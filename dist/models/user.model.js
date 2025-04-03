@@ -1,7 +1,10 @@
-import mongoose, { Schema } from 'mongoose';
-const UserSchema = new Schema({
-    username: { type: String, required: true },
-    email: { type: String, required: true },
-});
-const UserModel = mongoose.model('User', UserSchema);
-export default UserModel;
+export default class User {
+    static async findOne({ email }) {
+        const dummyUsers = [
+            { email: "testuser1@dummy.com" },
+            { email: "testuser2@dummy.com" },
+            { email: "testuser3@dummy.com" },
+        ];
+        return dummyUsers.find((u) => u.email === email) || null;
+    }
+}

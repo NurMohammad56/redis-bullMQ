@@ -1,15 +1,12 @@
-import mongoose, { Document, Model, Schema } from 'mongoose';
-
-interface IUser extends Document {
-    username: string;
-    email: string;
-}
-
-const UserSchema = new Schema<IUser>({
-    username: { type: String, required: true },
-    email: { type: String, required: true },
-});
-
-const UserModel: Model<IUser> = mongoose.model<IUser>('User', UserSchema);
-
-export default UserModel;
+// Dummy user model for testing
+export default class User {
+    static async findOne({ email }: { email: string }) {
+      // Simulate a user database
+      const dummyUsers = [
+        { email: "testuser1@dummy.com" },
+        { email: "testuser2@dummy.com" },
+        { email: "testuser3@dummy.com" },
+      ];
+      return dummyUsers.find((u) => u.email === email) || null;
+    }
+  }
